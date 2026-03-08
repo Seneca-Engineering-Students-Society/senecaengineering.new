@@ -3,5 +3,5 @@ public/
 resources/
 
 # others
-.github/workflows
+.github/workflows/
 .hugo_build.lock

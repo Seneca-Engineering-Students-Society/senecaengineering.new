@@ -2,72 +2,75 @@
 
 This repository contains the official website of the Seneca Engineering Students' Society (SESS).
 
-The website, [senecaengineering.org](senecaengineering.org), is built using [Hugo](https://gohugo.io/), an open-source static site generator, with the [Blowfish theme](https://themes.gohugo.io/themes/blowfish/) and deployed using [GitHub Pages](pages.github.com).
+The website, [senecaengineering.org](https://senecaengineering.org), is built using [Hugo](https://gohugo.io/), an open-source static site generator, with the [Blowfish theme](https://themes.gohugo.io/themes/blowfish/) and deployed using [GitHub Pages](https://pages.github.com).
 
-The philiospy behind this architecture is for the ease of maintenance and collabration.
+The philosophy behind this architecture is to ensure ease of maintenance and collaboration.
 
-# Updating the website
+# Updating the Website
 
 ## 1. Install Hugo
 
 Reference: [Hugo: Installation](https://gohugo.io/installation/)
 
-### Windows User
+### Windows Users
 
-Open PowerSheld and install Hugo Extended:
+Open PowerShell and install Hugo Extended:
 
-``` shell
+```shell
 winget install Hugo.Hugo.Extended
+
 ```
 
-### Linux User
+### Linux Users
 
 Open a terminal and install Hugo Extended:
 
-``` shell
+```shell
 sudo snap install hugo
+
 ```
 
-### Mac User
+### Mac Users
 
 Open a terminal and install Hugo Extended:
 
-``` shell
+```shell
 brew install hugo
 ```
 
-## Validate Hugo Installation
+### Validate Hugo Installation
 
-Open a new terminal/shell:
+Open a new terminal/shell and run:
 
-``` shell
+```shell
 hugo version
 ```
 
-## 2. (Fork or) Clone this Repo and Run the Website Locally
+## 2. (Fork or) Clone this Repository and Run the Website Locally
 
-(Optionally, you may also fork this repo to your GitHub account.)
+*(Optionally, you may also fork this repository to your own GitHub account.)*
 
-Open a new terminal/shell and clone this Repo:
+Open a new terminal/shell and clone this repository:
 
-``` shell
+```shell
 git clone https://github.com/Seneca-Engineering-Students-Society/senecaengineering.org.git
+
 cd senecaengineering.org
 ```
 
-Ensure you are in the project root directory `senecaengineering.org/` then serve the website on localhost:
+Ensure you are in the project root directory (`senecaengineering.org/`), then serve the website on localhost:
 
-``` shell
+```shell
 hugo serve
 ```
 
-Open [http://localhost:1313/](http://localhost:1313/) to see the website.
+Open [http://localhost:1313/](https://www.google.com/search?q=http://localhost:1313/) in your web browser to see the website.
 
 ## 3. Modifying the Content
 
-**LiveReload:** While the server is running, Hugo injects JavaScript into the generated HTML pages. The LiveReload script creates a connection from the browser to the server via web sockets. You do not need to install any software or browser plugins, nor is any configuration required.
+**LiveReload:** While the server is running, Hugo injects JavaScript into the generated HTML pages. The LiveReload script creates a connection from the browser to the server via web sockets. As you save files, the browser will refresh automatically. You do not need to install any software or browser plugins, nor is any configuration required.
 
-```
+```text
 senecaengineering.org/
 ├── archetypes/   <-- contains templates for new content
 │   └── default.md
@@ -82,97 +85,98 @@ senecaengineering.org/
 └── themes/       <-- contains the theme used for the website
 ```
 
-Unless you are changing site-wide settings or the theme, you only need to modify files within the content directory to update information on the website.
+Unless you are changing site-wide settings or the theme, you only need to modify files within the `content` directory to update information on the website.
 
-Before starting any modification, start a new branch locally:
+Before starting any modifications, create and switch to a new branch locally:
 
-``` shell
+```shell
 git checkout -b name-of-your-branch
 ```
 
-This ensure you will not be overwriting the main branch when you commit your change later on.
+This ensures you will not overwrite the `main` branch when you commit your changes later on.
 
-Make your change and see the update.
+Make your changes and preview the updates in your browser.
 
-To stop the Hugo server, press <kbd>Ctrl</kbd>+<kbd>z</kbd>.
+* To stop the Hugo server, press <kbd>Ctrl</kbd>+<kbd>C</kbd>.
+* To restart it, run: `hugo serve`
 
-To restart it:
+## 4. Upload the Changes
 
-``` shell
-hugo serve
-```
-                                                    
-## 4. Upload the Change
+Once you are satisfied with your changes, save, commit, and push them to GitHub.
 
-Once you are satisfy with the changes that you made, save, commit and push the change.
-
-``` shell
+```shell
 git add .
-git commit -m "provide a detailed messsage of the changes that you made"
-git push
+git commit -m "Provide a detailed message of the changes that you made"
+git push -u origin name-of-your-branch
 ```
 
-If you made changes to multiple file that are unrelated, the best practice is to stage multiple commit by adding the files individually:
+If you made changes to multiple unrelated files, the best practice is to stage multiple commits by adding the files individually:
 
-``` shell
-git add file1.md
-git add file2.md
-git commit -m "provide a detailed messsage of the changes related to file1 and file2"
+```shell
+git add file1.md file2.md
+git commit -m "Provide a detailed message of the changes related to file1 and file2"
+
 git add file3.md
-git commit -m "provide a detailed messsage of the changes related to file3"
-git push
+git commit -m "Provide a detailed message of the changes related to file3"
+
+git push -u origin name-of-your-branch
 ```
 
-## 5. Rules and Best Practice for Website Content
+After pushing your branch, create a **Pull Request (PR)** on GitHub to merge your changes into the `main` branch. Create one pull request for every logical group of changes; do not create one massive request.
 
-All content except for site-wide script or graphic should be created within the `content` directory.
+Another member from SESS will review and approve the changes.
 
-All content (markdown file and images) for a page should be contained within a directory as a page-bundle.
+## 5. Rules and Best Practices for Website Content
 
-Hugo treat `index.md` as a single page directory and `_index.md` as the listing page of a multi-pages directory. Hugo will automatically search for `index.md` within the directory structure.
+* All content, except for site-wide scripts or graphics, should be created within the `content` directory.
+* All content (Markdown files and images) for a specific page should be contained within its own directory as a **Page Bundle**.
+* Hugo treats `index.md` as a single page (Leaf Bundle) and `_index.md` as the listing page for a directory containing multiple pages (Branch Bundle). Hugo will automatically search for `index.md` within the directory structure.
 
 For example, to create a new post for the blog:
 
-1. Create a new directory under blog:
+1. Create a new directory under `blog` and add an `index.md` file:
 
-``` shell
-mkdir content/blog/my-post/
-touch content/blog/my-post/my-post.md 
-```
+    ```shell
+    mkdir content/blog/my-post/
+    touch content/blog/my-post/index.md 
 
-Or using the hugo command:
+    ```
 
-``` shell
-hugo content/blog/my-post/my-post.md 
-```
+    *(Alternatively, use the Hugo command to generate it with the proper front matter:)*
 
-Then edit the .md file using a text editor:
+    ```shell
+    hugo new content/blog/my-post/index.md 
 
-``` shell
-nano content/blog/my-post/my-post.md 
-```
+    ```
 
-Example content:
+2. Edit the `.md` file using a text editor:
 
-```
----
-title: "Robotics Workshop"
-date: 2026-03-05
----
+    ```shell
+    nano content/blog/my-post/index.md 
 
-We are hosting a robotics workshop this Friday at Seneca.
-```
+    ```
 
-Save and exit.
+    **Example content:**
 
-All image for the post will go into the same directory:
+    ```text
+    ---
+    title: "Robotics Workshop"
+    date: 2026-03-05
+    ---
 
-```
-content/blog/my-post/my-post-image.png 
-```
+    We are hosting a robotics workshop this Friday at Seneca.
+    ```
 
-The `static` directory is reserved for site-wide static content such as favicon.ico, robots.txt, logo.
+    Save and exit.
+
+    All images for the post should go into the exact same directory:
+
+    ```text
+    content/blog/my-post/my-post-image.png 
+    ```
+
+> **Note:** The `static` directory is strictly reserved for site-wide static content such as `favicon.ico`, `robots.txt`, and the main site logo.
 
 ## Contact Us
 
-This project is maintained by the Seneca Engineering Students' Society. For technical issues contact the repository maintainers.
+This project is maintained by the Seneca Engineering Students' Society. For technical issues, please contact the repository maintainers.

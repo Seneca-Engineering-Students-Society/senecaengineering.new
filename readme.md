@@ -53,7 +53,7 @@ hugo version
 Open a new terminal/shell and clone this repository:
 
 ```shell
-git clone https://github.com/Seneca-Engineering-Students-Society/senecaengineering.org.git
+git clone --recurse-submodules https://github.com/Seneca-Engineering-Students-Society/senecaengineering.org.git
 
 cd senecaengineering.org
 ```
@@ -64,11 +64,19 @@ Ensure you are in the project root directory (`senecaengineering.org/`), then se
 hugo serve
 ```
 
-Open [http://localhost:1313/](https://www.google.com/search?q=http://localhost:1313/) in your web browser to see the website.
+Open [http://localhost:1313/](http://localhost:1313/) in your web browser to see the website.
+
+If you see "Page Not Found" or the page is not displaying correctly, you most likely missed the submodule during the initial clone. Update your local repo to include the submodule:
+
+```shell
+git submodule update --init --recursive
+```
+
+During cloning of submodules, nothing much will show in the terminal until the complete download and verification is done so just wait and be patient.
 
 ## 3. Modifying the Content
 
-**LiveReload:** While the server is running, Hugo injects JavaScript into the generated HTML pages. The LiveReload script creates a connection from the browser to the server via web sockets. As you save files, the browser will refresh automatically. You do not need to install any software or browser plugins, nor is any configuration required.
+**LiveReload:** When the server is running, Hugo injects JavaScript into the generated HTML pages. The LiveReload script creates a connection from the browser to the server via web sockets. As you save files, the browser will refresh automatically. You do not need to install any software or browser plugins, nor is any configuration required.
 
 ```text
 senecaengineering.org/
@@ -131,6 +139,7 @@ Another member from SESS will review and approve the changes.
 * All content, except for site-wide scripts or graphics, should be created within the `content` directory.
 * All content (Markdown files and images) for a specific page should be contained within its own directory as a **Page Bundle**.
 * Hugo treats `index.md` as a single page (Leaf Bundle) and `_index.md` as the listing page for a directory containing multiple pages (Branch Bundle). Hugo will automatically search for `index.md` within the directory structure.
+* To update the theme layout, create overrides in the `layouts/` directory. Do NOT modify files in the `theme/` directory directly.
 
 For example, to create a new post for the blog:
 
